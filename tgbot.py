@@ -96,7 +96,7 @@ def userCmd(cmd):
 
 # text event
 @bot.message_handler(content_types=['text'])
-def user(txt):
+def userTxt(txt):
     
     # send msg
     if False:
