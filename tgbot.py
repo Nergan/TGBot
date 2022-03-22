@@ -1,5 +1,7 @@
+import threading
 import telebot # official documentation --> pypi.org/project/pyTelegramBotAPI/0.3.0
 import time
+import os
 
 # set proxy [ OPTIONAL ]
 if False:
@@ -24,8 +26,10 @@ bot = telebot.TeleBot('YOUR TOKEN') # bot token
 def userCmd(cmd):
     
     # send msg
-    if False:
-        bot.send_message(cmd.chat.id, 'MESSAGE TEXT', parse_mode='html')
+    if True:
+        while True:
+            bot.send_message(cmd.chat.id, 'MESSAGE TEXT', parse_mode='html')
+            time.sleep(1)
 
     # send img   
     elif False:
@@ -552,16 +556,37 @@ def pressButton(button):
          
     else:
         pass
-        
-# the bot starts and runs while the program is running
-end = False
-while not end:
-    try:
-        print('Bot is running')
-        bot.infinity_polling()
-        end = True
+      
+      
+if __name__ == '__main__':
     
-    # in case of an error, the bot restarts after a few seconds
-    except Exception as ex:
-        print(ex)
-        time.sleep(15)
+    # the bot starts and runs while the program is running
+    if True:
+        end = False
+        while not end:
+            try:
+                print('Bot is running')
+                bot.infinity_polling()
+                end = True
+            
+            # in case of an error, the bot restarts after a few seconds
+            except Exception as ex:
+                print(ex)
+                time.sleep(15)
+    
+    # run the bot for a specified period of time     
+    else:
+        timer = 10 # <-- runs for 10 seconds
+        
+        def timering(t=0):
+            for i in range(t, 0, -1):
+                print('Timer >', i)
+                time.sleep(1)
+                
+            os._exit(0)
+        
+        threadBot = threading.Thread(target=bot.infinity_polling)
+        threadTimer = threading.Thread(target=timering, args=(timer,))
+
+        threadBot.start()
+        threadTimer.start()
