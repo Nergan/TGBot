@@ -26,10 +26,8 @@ bot = telebot.TeleBot('YOUR TOKEN') # bot token
 def userCmd(cmd):
     
     # send msg
-    if True:
-        while True:
-            bot.send_message(cmd.chat.id, 'MESSAGE TEXT', parse_mode='html')
-            time.sleep(1)
+    if False:
+        bot.send_message(cmd.chat.id, 'MESSAGE TEXT', parse_mode='html')
 
     # send img   
     elif False:
@@ -558,8 +556,8 @@ def pressButton(button):
         pass
       
       
-if __name__ == '__main__':
-    
+if __name__ == '__main__':  
+
     # the bot starts and runs while the program is running
     if True:
         end = False
